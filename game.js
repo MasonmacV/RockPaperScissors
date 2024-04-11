@@ -26,42 +26,90 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === "ROCK") {
         if(computerSelection === "ROCK") {
-            return "Tie! Rock Ties Rock!"
+            return 0;
         }
         else if (computerSelection === "PAPER"){
-            return "You Lose! Paper Covers Rock!"
+            return 1;
         }
         else {
-            return "You Win! Rock Beats Scissors!"
+            return 2;
         }
     }
 
     if (playerSelection === "PAPER") {
         if(computerSelection === "ROCK") {
-            return "You Win! Paper covers Rock!"
+            return 3;
         }
         else if (computerSelection === "PAPER"){
-            return "Tie! Paper Ties Paper!"
+            return 4;
         }
         else {
-            return "You Lose! Scissors Cuts Paper!"
+            return 5;
         }
     }
 
     if (playerSelection === "SCISSORS") {
         if(computerSelection === "ROCK") {
-            return "You Lose! Rock Crushes Scissors!"
+            return 6;
         }
         else if (computerSelection === "PAPER"){
-            return "You Win! Scissors Cuts Paper!"
+            return 7;
         }
         else {
-            return "Tie! Scissors Ties Scissors!"
+            return 8;
         }
     }
 
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function playGame () {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Enter your choice of rock, paper or scissors:")
+        let computerSelection = getComputerChoice();
+        let outcome = playRound(playerSelection, computerSelection);
+        let playerScore = 0;
+        let computerScore = 0;
+
+        switch(outcome) {
+            case 0: 
+                return console.log("Tie! Rock Ties Rock!")
+                continue;
+            case 1: 
+                return console.log("You Lose! Paper Covers Rock!")
+                ++computerScore;
+                continue;
+            case 2 :
+                return  console.log("You Win! Rock Beats Scissors!")
+                ++playerScore;
+                continue;
+            case 3:
+                return  console.log("You Win! Paper covers Rock!")
+                ++playerScore;
+                continue;
+            case 4:
+                return  console.log("Tie! Paper Ties Paper!")
+                continue;
+            case 5:
+                return console.log("You Lose! Scissors Cuts Paper!")
+                ++computerScore;
+                continue;
+            case 6:
+                return console.log("You Lose! Rock Crushes Scissors!")
+                ++computerScore;
+                continue;
+            case 7:
+                return console.log("You Win! Scissors Cuts Paper!")
+                ++playerScore;
+                continue;
+            case 8:
+                return console.log("Tie! Scissors Ties Scissors!")
+                continue;
+        }
+        
+    }
+    console.log("");
+    console.log("Player Score: " + playerScore + " Computer Score: " + computerScore);
+}
+
+
+playGame();
